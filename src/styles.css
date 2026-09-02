@@ -6,12 +6,33 @@
   --text: #f2f5f8;
   --muted: #9aa6b4;
   --accent: #e8b84a;
+  --accent-ink: #14181f;
   --ok: #3ea36b;
+  --danger: #e0596c;
+  --tabbar-bg: rgba(21, 27, 35, 0.96);
   --tabbar-height: 56px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 17px;
   line-height: 1.45;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Light theme: applied when document.documentElement.dataset.theme === "light" (state.tsx). */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fbfbfa;
+  --surface: #eceef1;
+  --line: #d5d9de;
+  --text: #14181f;
+  --muted: #545f6b;
+  --ok: #1f8a4c;
+  --danger: #c53049;
+  --tabbar-bg: rgba(251, 251, 250, 0.94);
+}
+
+/* Big-type mode: toggled as a class on <html> (state.tsx) from the bigType setting. */
+html.big-type {
+  font-size: 19px;
 }
 
 * {
@@ -42,6 +63,13 @@ body {
   margin: 0 auto;
 }
 
+/* Full-screen routes (workout mode) hide the tab bar, so there is no reserved bottom height. */
+.screen-full {
+  padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 24px);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
 .content h1 {
   font-size: 30px;
   margin: 8px 0 12px;
@@ -61,7 +89,8 @@ body {
   margin: 12px 0;
 }
 
-.card ol {
+.card ol,
+.card ul {
   margin: 0;
   padding-left: 20px;
 }
@@ -76,6 +105,11 @@ body {
 
 .ok {
   color: var(--ok);
+}
+
+.error {
+  color: var(--danger);
+  font-size: 14px;
 }
 
 .mono {
@@ -104,7 +138,7 @@ body {
   grid-template-columns: repeat(5, 1fr);
   height: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
   padding-bottom: env(safe-area-inset-bottom);
-  background: rgba(21, 27, 35, 0.96);
+  background: var(--tabbar-bg);
   border-top: 1px solid var(--line);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -122,4 +156,152 @@ body {
 
 .tab.active {
   color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+/* Hero: a larger card for the day's headline session. */
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  margin: 12px 0;
+}
+
+.hero-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.button-primary,
+.button-secondary {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.button-primary {
+  min-height: 52px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.button-secondary {
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+input[type="number"],
+input[type="date"],
+input[type="file"] {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  padding: 0 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+}
+
+/* Segmented control: a 2-4 choice button group, e.g. Sleep or Theme. */
+.segmented {
+  display: flex;
+  gap: 4px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.segmented button {
+  flex: 1;
+  min-height: 40px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 0 8px;
+}
+
+.segmented button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Meter: a horizontal bar with a fill, used by the 1000-Pound Club card. */
+.meter {
+  margin: 12px 0;
+}
+
+.meter-track {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--line);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 6px 0 0 6px;
+}
+
+/* Dot: a small accent marker, used next to the Today tab label when a session is unlogged. */
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-left: 4px;
+  vertical-align: super;
 }

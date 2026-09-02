@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRegisterSW } from "virtual:pwa-register/react";
+import { BackupCard } from "../components/more/BackupCard";
+import { PreferencesCard } from "../components/more/PreferencesCard";
+import { ProgramCard } from "../components/more/ProgramCard";
+import { SafetyCard } from "../components/more/SafetyCard";
 
 function useStandalone(): boolean {
   const [standalone, setStandalone] = useState(false);
@@ -20,6 +24,11 @@ export function MoreScreen() {
   return (
     <section className="content">
       <h1>More</h1>
+
+      <ProgramCard />
+      <PreferencesCard />
+      <BackupCard />
+      <SafetyCard />
 
       <div className="card">
         <h2>Install on your iPhone</h2>
@@ -53,7 +62,7 @@ export function MoreScreen() {
         <p className="muted mono">
           {__SUMMIT_COMMIT__} · {builtAt.toLocaleString()}
         </p>
-        <p className="muted">Phase 0: shell, install, offline. Settings and Back up arrive in Phase 1.</p>
+        <p className="muted">Phase 1: program data, Today, workout mode, and backup.</p>
       </div>
     </section>
   );
