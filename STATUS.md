@@ -8,16 +8,31 @@ Rulebook: PLAN.md. This file is the only navigation. Newest entry at the top of 
 | Phase | State | Your check |
 |---|---|---|
 | 0 Shell, install, offline | Confirmed on Nick's iPhone 2026-09-02 | Open the address in Safari, Share, Add to Home Screen, open Summit from the home screen, turn on airplane mode, reopen it, and confirm More says "Ready offline" |
-| 1 Program, Today, workout mode, backup | In progress from 2026-09-02 | Log one real strength session at the gym |
+| 1 Program, Today, workout mode, backup | Built and deployed 2026-09-02 (build d79a32e), awaiting your gym check | Open Summit from the home screen on a lifting day, tap Start workout, log every set with the Complete button, let the rest timer run once, tap Finish, pick a status, tap Save workout. Then tell me what was wrong, slow, or missing |
 | 2 Plan map, drill-down, videos, swaps, readiness | Waiting | Open every day of the current week |
 | 3 Conditioning, Palisades cards, Progress, weekly report | Waiting | Log one run or hike and read the report |
 | 4 Kinnelon pack, GPX import, hike recorder, polish, review | Waiting | Walk one Kinnelon route with the recorder |
 
 ## Next step
 
-Phase 1 step 1: program data carried into `src/data/`, then the Today screen with the session card and Start button.
+Nick logs one real strength session at the gym with the deployed build and reports. Fixes from that report close Phase 1; then Phase 2 (Plan map, day drill-down, videos, swaps, reschedule) starts.
+
+## Known limits in this build
+
+- Conditioning days (Tuesday, Thursday, Saturday) show the week's prescription but logging arrives in Phase 3.
+- The 1000-Pound Club meter stays at zero until a tested single is logged in Week 12; working baselines S and D are shown, not counted.
+- The plate calculator uses the original lift's equipment even after a swap.
+- The rest timer beeps only while Summit is open. iPhone web apps cannot sound a timer from the lock screen.
+- Backup shares a file through the iPhone share sheet; if the share sheet is unavailable, a download link appears instead.
 
 ## Verified so far
+
+2026-09-02, Phase 1
+- Automated: 103 tests across 15 files, TypeScript clean, production build green, Actions deploy green.
+- Program data: five tests pin the PDF's worked examples (squat and deadlift formulas, paused squat percentages, Week 12 checks) and the archived Week 8 table Nick trained from.
+- Local interactive check in a 375-wide Chromium viewport: Today shows Week 9 of 12 with the session card and tab dot; Start creates the draft; workout mode shows rows with targets and last-time column, Complete marks the row and starts the rest bar with its end time, Finish shows tonnage, status choices, and Next up; nothing overflows; every button is at least 44 px.
+- Live address: build stamp d79a32e served, service worker and manifest present.
+- Not performed: a real iPhone session, the Web Share backup on a real phone, the wake lock and beep on a real phone. Those are your gym check.
 
 2026-09-02, Phase 0
 - Automated: 2 tests pass, TypeScript clean, build produces a 12-entry offline precache, Actions run 33655238798 deployed green.
