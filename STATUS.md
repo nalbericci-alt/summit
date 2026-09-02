@@ -7,15 +7,15 @@ Rulebook: PLAN.md. This file is the only navigation. Newest entry at the top of 
 
 | Phase | State | Your check |
 |---|---|---|
-| 0 Shell, install, offline | Deployed 2026-09-02, awaiting your phone check | Open the address in Safari, Share, Add to Home Screen, open Summit from the home screen, turn on airplane mode, reopen it, and confirm More says "Ready offline" |
-| 1 Program, Today, workout mode, backup | Next | Log one real strength session at the gym |
+| 0 Shell, install, offline | Confirmed on Nick's iPhone 2026-09-02 | Open the address in Safari, Share, Add to Home Screen, open Summit from the home screen, turn on airplane mode, reopen it, and confirm More says "Ready offline" |
+| 1 Program, Today, workout mode, backup | In progress from 2026-09-02 | Log one real strength session at the gym |
 | 2 Plan map, drill-down, videos, swaps, readiness | Waiting | Open every day of the current week |
 | 3 Conditioning, Palisades cards, Progress, weekly report | Waiting | Log one run or hike and read the report |
 | 4 Kinnelon pack, GPX import, hike recorder, polish, review | Waiting | Walk one Kinnelon route with the recorder |
 
 ## Next step
 
-Nick installs Phase 0 on the iPhone and says go or no-go. On go, Phase 1 starts with the program data copied from the archive into `src/data/` and the Today screen.
+Phase 1 step 1: program data carried into `src/data/`, then the Today screen with the session card and Start button.
 
 ## Verified so far
 
@@ -34,10 +34,7 @@ Nick installs Phase 0 on the iPhone and says go or no-go. On go, Phase 1 starts 
 
 ## Suggestions queue
 
-Proposed at the end of Phase 0. They enter PLAN.md only when Nick says yes.
-1. Gym-mode brightness: a one-tap high-contrast light theme for bright gyms, alongside dark.
-2. Home-screen badge of the day: the Today tab label shows a dot when a session is planned and not yet logged.
-3. Quick log from the home screen: a Siri Shortcut link that opens straight into workout mode for today's session.
+All three Phase 0 suggestions approved by Nick on 2026-09-02 and moved into PLAN.md section 4b, Phase 1. Next suggestions come at the end of Phase 1.
 
 ## Housekeeping
 

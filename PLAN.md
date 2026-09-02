@@ -105,11 +105,16 @@ Progress and motivation (Apple Fitness, Strava, Whoop)
 - Cycle review at week 12: starting versus ending totals, sessions done, PRs, and what changed.
 - Readiness trend from the check-ins beside the lift charts, so soreness can be read against load.
 
+Approved by Nick after Phase 0 (2026-09-02)
+- A one-tap high-contrast light theme for bright gyms, alongside dark.
+- A dot on the Today tab when a session is planned and not yet logged.
+- A Siri Shortcut link that opens straight into today's workout.
+
 Reliability
 - Sunday backup nudge that shares the file to iCloud Drive in one tap. Restore shows the file's date and workout count before it replaces anything.
 - Big-type mode and a left- or right-hand layout toggle for one-hand logging.
 
-Where they land: gym additions in Phase 1, test-week mode in Phase 2, conditioning and progress additions in Phase 3, trail additions in Phase 4, reliability split between Phases 1 and 4.
+Where they land: gym additions and the three Phase 0 approvals in Phase 1, test-week mode in Phase 2, conditioning and progress additions in Phase 3, trail additions in Phase 4, reliability split between Phases 1 and 4.
 
 Not possible in an iPhone web app, so not promised: Apple Health sync, background GPS, haptics, lock-screen timers, home-screen widgets.
 
