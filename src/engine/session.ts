@@ -134,16 +134,23 @@ function workingLoadFor(resolvedSets: ResolvedSet[]): number | null {
   return max;
 }
 
-/** Builds every set row for one resolved set group, with deterministic, exercise-unique row ids. */
-function rowsForGroup(lineId: string, group: ResolvedSet, groupIndex: number, sharesRole: boolean): PlannedRow[] {
+/**
+ * Builds every set row for one resolved set group, with deterministic, exercise-unique row ids.
+ * `startIndex` is the running count of rows already emitted earlier in this exercise, so the
+ * returned rows' `setIndex` is 1-based across the whole exercise (top = 1, then back-offs 2, 3, 4),
+ * not reset per set group. The row id still uses a per-group local set number, so ids are unaffected.
+ */
+function rowsForGroup(lineId: string, group: ResolvedSet, groupIndex: number, sharesRole: boolean, startIndex: number): PlannedRow[] {
   const rows: PlannedRow[] = [];
-  for (let setIndex = 1; setIndex <= group.sets; setIndex++) {
-    const rowId = sharesRole ? `${lineId}:${group.role}:${groupIndex}:${setIndex}` : `${lineId}:${group.role}:${setIndex}`;
+  for (let localSetNumber = 1; localSetNumber <= group.sets; localSetNumber++) {
+    const rowId = sharesRole
+      ? `${lineId}:${group.role}:${groupIndex}:${localSetNumber}`
+      : `${lineId}:${group.role}:${localSetNumber}`;
     rows.push({
       rowId,
       lineId,
       exerciseId: "", // filled in by the caller, which knows the line's exerciseId
-      setIndex,
+      setIndex: startIndex + localSetNumber,
       role: group.role,
       reps: group.reps,
       load: { lb: group.lb, perHand: group.perHand, label: group.label, fromBaseline: group.fromBaseline, ownerChoice: group.ownerChoice },
@@ -185,9 +192,16 @@ export function buildSession(
     const roleGroupCounts: Partial<Record<ResolvedSet["role"], number>> = {};
     for (const set of resolvedSets) roleGroupCounts[set.role] = (roleGroupCounts[set.role] ?? 0) + 1;
 
-    const rows: PlannedRow[] = resolvedSets.flatMap((group, groupIndex) => {
+    const rows: PlannedRow[] = [];
+    let runningSetCount = 0;
+    resolvedSets.forEach((group, groupIndex) => {
       const sharesRole = (roleGroupCounts[group.role] ?? 0) > 1;
-      return rowsForGroup(line.lineId, group, groupIndex, sharesRole).map((row) => ({ ...row, exerciseId: line.exerciseId }));
+      const groupRows = rowsForGroup(line.lineId, group, groupIndex, sharesRole, runningSetCount).map((row) => ({
+        ...row,
+        exerciseId: line.exerciseId,
+      }));
+      rows.push(...groupRows);
+      runningSetCount += group.sets;
     });
 
     exercises.push({

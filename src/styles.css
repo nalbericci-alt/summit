@@ -230,6 +230,7 @@ button:disabled {
 }
 
 input[type="number"],
+input[type="text"],
 input[type="date"],
 input[type="file"] {
   min-height: 44px;
@@ -260,7 +261,7 @@ input[type="checkbox"] {
 
 .segmented button {
   flex: 1;
-  min-height: 40px;
+  min-height: 44px;
   border: none;
   border-radius: 9px;
   background: transparent;
@@ -304,4 +305,401 @@ input[type="checkbox"] {
   background: var(--accent);
   margin-left: 4px;
   vertical-align: super;
+}
+
+textarea {
+  min-height: 88px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Segmented, wrapping variant: for a control with more options than fit one row (e.g. swap reasons). */
+.segmented.wrap {
+  flex-wrap: wrap;
+}
+
+.segmented.wrap button {
+  flex: 1 1 45%;
+}
+
+/* Small inline label, e.g. "optional" next to a set row's role, or a PR badge on the finish screen. */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 6px;
+  margin-left: 6px;
+  border-radius: 6px;
+  background: var(--line);
+  color: var(--muted);
+}
+
+.pr-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Compact button: a button-primary/button-secondary sized to its content instead of the full width. */
+.button-compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 64px;
+  margin: 0;
+  padding: 0 14px;
+}
+
+/* ---------- Workout mode (#/workout/<id>) ---------- */
+
+:root {
+  --workout-control-height: 68px;
+}
+
+.workout-top-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.workout-top-bar-title {
+  flex: 1;
+  text-align: center;
+  min-width: 0;
+}
+
+.workout-top-bar-title h1 {
+  font-size: 19px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workout-clock {
+  margin: 2px 0 0;
+  font-size: 15px;
+}
+
+.workout-over-time {
+  margin: 2px 0 0;
+  font-size: 12px;
+}
+
+.workout-body {
+  padding-bottom: calc(150px + env(safe-area-inset-bottom));
+}
+
+.exercise-panel-position {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.exercise-panel-name {
+  margin: 0 0 4px;
+  font-size: 22px;
+}
+
+.exercise-panel-tools {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.exercise-sections details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 12px;
+  margin: 8px 0;
+}
+
+.exercise-sections summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.exercise-sections summary::-webkit-details-marker {
+  display: none;
+}
+
+.exercise-sections details[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.exercise-sections details ul,
+.exercise-sections details p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.set-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.set-row {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.set-row-completed {
+  border-color: var(--ok);
+  background: rgba(62, 163, 107, 0.14);
+}
+
+.set-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.set-row-role {
+  font-weight: 700;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.set-row-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.set-row-target {
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.set-row-target-tap {
+  color: var(--accent);
+  border-color: var(--accent);
+  border-style: solid;
+}
+
+.set-row-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.set-row-inputs .field {
+  margin: 0;
+}
+
+.set-row-inputs span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.set-row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.set-complete-button {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.set-complete-button-done {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #fff;
+}
+
+/* Rest timer bar: sticky above the fixed control bar while a countdown is active or has just ended. */
+.rest-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--workout-control-height) + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  z-index: 5;
+}
+
+.rest-bar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rest-bar-time {
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.rest-bar-detail {
+  font-size: 12px;
+}
+
+.rest-bar-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Fixed control bar: Previous / Next for the exercise pager. Mirrors for a left-handed grip. */
+.workout-control-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px calc(env(safe-area-inset-bottom) + 10px);
+  background: var(--tabbar-bg);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 6;
+}
+
+.workout-control-bar button {
+  flex: 1;
+  margin: 0;
+}
+
+.left-handed .workout-control-bar {
+  flex-direction: row-reverse;
+}
+
+/* Bottom sheet: plate calculator, swap, history, and the all-exercises jump list. */
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  z-index: 20;
+}
+
+.sheet {
+  width: 100%;
+  max-height: 82vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: 18px 18px 0 0;
+  padding: 16px 16px calc(env(safe-area-inset-bottom) + 16px);
+  border-top: 1px solid var(--line);
+}
+
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sheet-header h2 {
+  margin: 0;
+}
+
+.sheet-close {
+  min-height: 44px;
+  min-width: 44px;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+}
+
+.exercise-jump-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.exercise-jump-item {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+}
+
+.exercise-jump-item.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.plate-target {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.plate-breakdown {
+  font-size: 17px;
+  margin: 4px 0;
 }

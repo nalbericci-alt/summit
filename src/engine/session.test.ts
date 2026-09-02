@@ -79,6 +79,8 @@ describe("buildSession", () => {
       ["backoff", 230, "3"],
       ["backoff", 230, "3"],
     ]);
+    // setIndex is 1-based across the whole exercise, not reset per set group: top = 1, back-offs 2, 3, 4.
+    expect(squat.rows.map((r) => r.setIndex)).toEqual([1, 2, 3, 4]);
 
     const rdl = session!.exercises.find((e) => e.lineId === "wednesday_rdl")!;
     expect(rdl.rows.map((r) => [r.load.lb, r.reps, r.note])).toEqual([

@@ -21,10 +21,15 @@ function useHash(): string {
   return hash;
 }
 
-/** Matches "#/workout/<id>", the one full-screen route that hides the tab bar. */
+/** Matches "#/workout/<id>" and "#/workout/<id>/finish", the two full-screen routes that hide the tab bar. */
 function workoutIdFromHash(hash: string): string | null {
   const match = /^#\/workout\/([^/]+)/.exec(hash);
   return match ? decodeURIComponent(match[1]) : null;
+}
+
+/** True for "#/workout/<id>/finish": tells WorkoutScreen to render the finish flow instead of the pager. */
+function isFinishHash(hash: string): boolean {
+  return /^#\/workout\/[^/]+\/finish\/?$/.test(hash);
 }
 
 const SCREEN_COPY: Record<Exclude<TabId, "more" | "today">, { title: string; note: string }> = {
@@ -97,7 +102,7 @@ export function App() {
     return (
       <div className="app">
         <main className="screen-full" id="main">
-          <WorkoutScreen workoutId={workoutId} />
+          <WorkoutScreen workoutId={workoutId} finish={isFinishHash(hash)} />
         </main>
       </div>
     );
