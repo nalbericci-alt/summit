@@ -4,21 +4,25 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-function gitCommit(): string {
+function git(args: string): string | null {
   try {
-    return execSync("git rev-parse --short HEAD", { stdio: ["ignore", "pipe", "ignore"] })
-      .toString()
-      .trim();
+    return execSync(`git ${args}`, { stdio: ["ignore", "pipe", "ignore"] }).toString().trim();
   } catch {
-    return "local";
+    return null;
   }
 }
+
+// Builds are reproducible per commit: the stamp is the commit's own date, never the wall clock,
+// so two builds of one commit produce identical asset names and the service worker precache
+// always matches the index the CDN serves.
+const gitCommit = git("rev-parse --short HEAD") ?? "local";
+const gitCommitDate = git("log -1 --format=%cI") ?? "1970-01-01T00:00:00Z";
 
 export default defineConfig({
   base: "/summit/",
   define: {
-    __SUMMIT_COMMIT__: JSON.stringify(gitCommit()),
-    __SUMMIT_BUILT_AT__: JSON.stringify(new Date().toISOString()),
+    __SUMMIT_COMMIT__: JSON.stringify(gitCommit),
+    __SUMMIT_BUILT_AT__: JSON.stringify(gitCommitDate),
   },
   plugins: [
     react(),

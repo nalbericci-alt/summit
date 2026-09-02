@@ -60,4 +60,4 @@ All three Phase 0 suggestions approved by Nick on 2026-09-02 and moved into PLAN
 
 - Old repository renamed to `summit-archive` and archived on GitHub, private. Local folder `Cardio Workout` still points at it.
 - Node and npm installed with Homebrew on 2026-09-02.
-- Builds are not byte-identical between machines by design: the build stamp embeds the build time.
+- Builds are reproducible per commit: the stamp is the commit date. Deploys run only when app files change, so plan and status edits do not rotate asset names. GitHub Pages caches the worker file for ten minutes, so a new build can take up to ten minutes to reach a phone.
