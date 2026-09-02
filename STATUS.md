@@ -31,6 +31,9 @@ Phase 1 step 1: program data carried into `src/data/`, then the Today screen wit
 |---|---|---|---|---|
 | 2026-09-02 | Plan (PLAN.md) | Claude Fable 5.1 | high (session setting) | Planning is always Fable at high |
 | 2026-09-02 | Phase 0 build | Claude Fable 5.1, direct | session setting | Account setup plus a small shell; cheaper than briefing a subagent. Phase 1 build steps go to Sonnet subagents with written specs where the spec is clear |
+| 2026-09-02 | Phase 1 program data (src/data/program.ts, loads resolver, tests) | Claude Fable 5.1, direct | session setting | Transcribing 26 PDF pages of loads needs accuracy and the pages were already in context; 5 tests pin the PDF's worked examples and Nick's Week 8 table |
+| 2026-09-02 | Phase 1 storage and engine (calendar, session builder, warm-ups, plates, IndexedDB, backup) | Claude Sonnet subagent | agent default | Well-specified, fully testable logic with a written brief; Fable reviews the result |
+| 2026-09-02 | Phase 1 Today, readiness, More settings, backup and restore, app state | Claude Sonnet subagent | agent default | UI against fixed interfaces from a written brief; Fable reviews and renders it |
 
 ## Suggestions queue
 
